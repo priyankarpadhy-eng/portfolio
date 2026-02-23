@@ -245,13 +245,13 @@ async function fetchLinkedIn() {
 
     /* ── Step 4: Try CORS proxies — each has its own URL format ── */
     const proxies = [
-        // corsproxy.io: append target URL directly after ?
+        // allorigins plugin (often most reliable)
+        `https://api.allorigins.win/get?url=${encodeURIComponent(oEmbedTarget)}`,
+        // corsproxy.io direct format
         `https://corsproxy.io/?${encodeURIComponent(oEmbedTarget)}`,
-        // allorigins: uses ?url= param + raw endpoint
-        `https://api.allorigins.win/raw?url=${encodeURIComponent(oEmbedTarget)}`,
-        // corsproxy.io GET format (alternative encoding)
-        `https://corsproxy.io/?url=${encodeURIComponent(oEmbedTarget)}`,
-        // thingproxy: append URL after /fetch/
+        // html-load (alternative free proxy)
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(oEmbedTarget)}`,
+        // thingproxy (sometimes slow/blocks but worth keeping as last resort)
         `https://thingproxy.freeboard.io/fetch/${oEmbedTarget}`,
     ];
 
@@ -269,7 +269,15 @@ async function fetchLinkedIn() {
             }
             const text = await res.text();
             let json;
-            try { json = JSON.parse(text); } catch (_) { continue; }
+            try {
+                const maybeJson = JSON.parse(text);
+                // allOrigins wraps the actual response text in a `contents` property
+                if (maybeJson.contents) {
+                    json = JSON.parse(maybeJson.contents);
+                } else {
+                    json = maybeJson;
+                }
+            } catch (_) { continue; }
 
             if (json && json.title) {
                 // LinkedIn oEmbed title format: "Name | Headline - LinkedIn Premium"

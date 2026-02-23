@@ -233,18 +233,26 @@
         const cCamera = new THREE.PerspectiveCamera(60, contactCanvas.parentElement.offsetWidth / contactCanvas.parentElement.offsetHeight, 0.1, 100);
         cCamera.position.z = 5;
 
-        const cKnotGeo = new THREE.TorusKnotGeometry(1.5, 0.5, 120, 16);
-        const cKnotMat = new THREE.MeshBasicMaterial({ color: 0xD4A853, wireframe: true, transparent: true, opacity: 0.2 });
-        const cKnot = new THREE.Mesh(cKnotGeo, cKnotMat);
-        cKnot.position.set(3, 0, 0);
-        cScene.add(cKnot);
+        // 3D Wireframe Globe / Map
+        const cGlobeGeo = new THREE.SphereGeometry(2, 32, 32);
+        const cGlobeMat = new THREE.MeshBasicMaterial({ color: 0xD4A853, wireframe: true, transparent: true, opacity: 0.15 });
+        const cGlobe = new THREE.Mesh(cGlobeGeo, cGlobeMat);
+        cGlobe.position.set(3, 0, 0);
+        cScene.add(cGlobe);
+
+        // Add a secondary inner sphere for depth
+        const cInnerGeo = new THREE.SphereGeometry(1.9, 16, 16);
+        const cInnerMat = new THREE.MeshBasicMaterial({ color: 0x4a90a4, wireframe: true, transparent: true, opacity: 0.1 });
+        const cInnerGlobe = new THREE.Mesh(cInnerGeo, cInnerMat);
+        cGlobe.add(cInnerGlobe);
 
         const clock2 = new THREE.Clock();
         function animateContact() {
             requestAnimationFrame(animateContact);
             const t = clock2.getElapsedTime();
-            cKnot.rotation.x = t * 0.25;
-            cKnot.rotation.y = t * 0.4;
+            cGlobe.rotation.y = t * 0.15;
+            cGlobe.rotation.z = t * 0.05;
+            cInnerGlobe.rotation.y = -t * 0.1;
             cRenderer.render(cScene, cCamera);
         }
         animateContact();
