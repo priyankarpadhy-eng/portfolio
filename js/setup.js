@@ -8,42 +8,42 @@ let currentStep = 1;
 const TOTAL_STEPS = 4;
 const data = {
     li_url: '',
-    name: '', headline: '', bio: '',
-    university: '', degree: '', grad_year: '',
-    location: '', email: '', phone: '',
+    name: 'Priyankar Padhy', headline: 'Civil Engineering Undergraduate | Flutter & React Developer', bio: 'I am a second year civil undergraduate student at Indira Gandhi Institute of Technology, Sarang. I am passionate about software development (Flutter, React.js), cloud technologies (GCP, Cloudflare, Firebase, Supabase), and geopolitics.',
+    university: 'Indira Gandhi Institute of Technology, Sarang', degree: 'B.Tech Civil Engineering', grad_year: '2027',
+    location: 'Odisha, India', email: '', phone: '',
     linkedin: '', github: '',
     badge: 'Available for Internships & Collaboration',
     avatar_url: '',
-    stat_projects: 12, stat_years: 3, stat_internships: 4,
-    tags: ['AutoCAD', 'STAAD.Pro', 'Python', 'BIM', 'Revit'],
+    stat_projects: 4, stat_years: 2, stat_internships: 1,
+    tags: ['Flutter', 'React.js', 'STAAD.Pro', 'Firebase', 'GCP'],
     skills: [
-        { name: 'Structural Analysis', pct: 92 },
-        { name: 'AutoCAD / Civil 3D', pct: 88 },
-        { name: 'STAAD.Pro / SAP2000', pct: 80 },
-        { name: 'Material Science', pct: 85 },
-        { name: 'Geotechnical Engineering', pct: 75 }
+        { name: 'Flutter Development', pct: 90 },
+        { name: 'React.js', pct: 85 },
+        { name: 'Cloudflare / GCP', pct: 80 },
+        { name: 'Firebase / Supabase', pct: 85 },
+        { name: 'STAAD.Pro (CTTC BBSR)', pct: 95 }
     ],
     tools: [
-        { emoji: '📐', label: 'AutoCAD' }, { emoji: '🏗️', label: 'STAAD.Pro' },
-        { emoji: '🧱', label: 'Stadd.Pro' }, { emoji: '🗺️', label: 'ArcGIS' },
-        { emoji: '🐍', label: 'Python' }, { emoji: '📊', label: 'MATLAB' },
-        { emoji: '☁️', label: 'MS Project' }, { emoji: '🌿', label: 'LEED' }
+        { emoji: '📱', label: 'Flutter' }, { emoji: '⚛️', label: 'React.js' },
+        { emoji: '🔥', label: 'Firebase' }, { emoji: '☁️', label: 'GCP' },
+        { emoji: '⚡', label: 'Cloudflare' }, { emoji: '🏗️', label: 'STAAD.Pro' },
+        { emoji: '🌍', label: 'Geopolitics' }, { emoji: '🗣️', label: 'Multilingual' }
     ],
     projects: [
         {
-            title: 'Cable-Stayed Bridge Design',
-            category: 'Structural Design',
-            brief: '200m span bridge with composite deck and twin pylons',
-            description: 'Designed a 200m cable-stayed bridge for a semi-urban crossing, performing load analysis, pylon design, and cable optimization using STAAD.Pro and SAP2000.',
-            tech: 'SAP2000, AutoCAD, STAAD.Pro',
-            link: ''
+            title: 'LectureSnap',
+            category: 'Browser Extension & Web App',
+            brief: 'Smarter note-taking while watching lectures',
+            description: 'A FREE, safe, and easy-to-use website + Chrome extension designed to make note-taking effortless. Take screenshots of YouTube lectures without pausing, save to chosen folders, and export as PDF using shortcuts (Shift+S).',
+            tech: 'React, Chrome API',
+            link: 'https://lnkd.in/gdVzkh2F'
         },
         {
-            title: 'Smart Campus BIM Model',
-            category: 'BIM & Planning',
-            brief: 'Full BIM model for a sustainable university campus',
-            description: 'Comprehensive BIM model for a 50-acre smart campus, including structural, MEP, and landscape layers. Integrated energy simulation for LEED certification.',
-            tech: 'Revit, Navisworks, AutoCAD',
+            title: 'IGIT Marketplace',
+            category: 'Mobile Superapp',
+            brief: 'A college superapp for students and local shops',
+            description: 'A comprehensive college superapp developed specifically for the students and local shops of Indira Gandhi Institute of Technology, Sarang to facilitate local commerce and campus interactions.',
+            tech: 'Flutter, Firebase, Supabase',
             link: ''
         }
     ]
