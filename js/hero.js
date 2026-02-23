@@ -96,9 +96,10 @@
     const d = 0.6 + Math.random() * 1.2;
     const h = 1.0 + Math.random() * 4.5;
 
-    // Group to hold solid + wireframe parts
+    // Complex Group to hold detailed architecture
     const buildingGroup = new THREE.Group();
 
+    // Core Tower
     const widthSegments = Math.max(1, Math.floor(w * 3));
     const heightSegments = Math.max(1, Math.floor(h * 4));
     const depthSegments = Math.max(1, Math.floor(d * 3));
@@ -106,41 +107,66 @@
     const bGeo = new THREE.BoxGeometry(w, h, d, widthSegments, heightSegments, depthSegments);
     const buildingSolid = new THREE.Mesh(bGeo, wMat);
 
-    // Wireframe edges on top of solid
+    // Wireframe edges for windows
     const edges = new THREE.EdgesGeometry(bGeo);
     const buildingWireframe = new THREE.LineSegments(edges, eMat);
 
     buildingGroup.add(buildingSolid);
     buildingGroup.add(buildingWireframe);
 
-    // Crown/tier
-    if (Math.random() > 0.4 && h > 2.0) {
-      const topW = w * (0.5 + Math.random() * 0.3);
-      const topD = d * (0.5 + Math.random() * 0.3);
-      const topH = 0.5 + Math.random() * 1.5;
+    // Add side wings (for larger bases/complex shapes)
+    if (Math.random() > 0.5 && w > 1.2) {
+      const wingW = w * 0.4;
+      const wingH = h * (0.3 + Math.random() * 0.4);
+      const wingD = d + (Math.random() * 0.4);
 
-      const tWSeg = Math.max(1, Math.floor(topW * 3));
-      const tHSeg = Math.max(1, Math.floor(topH * 4));
-      const tDSeg = Math.max(1, Math.floor(topD * 3));
+      const wingGeo = new THREE.BoxGeometry(wingW, wingH, wingD, Math.max(1, Math.floor(wingW * 3)), Math.max(1, Math.floor(wingH * 4)), Math.max(1, Math.floor(wingD * 3)));
+      const wingSolid1 = new THREE.Mesh(wingGeo, wMat);
+      const wingWire1 = new THREE.LineSegments(new THREE.EdgesGeometry(wingGeo), eMat);
 
-      const tGeo = new THREE.BoxGeometry(topW, topH, topD, tWSeg, tHSeg, tDSeg);
-      const tSolid = new THREE.Mesh(tGeo, wMat);
+      const wingSolid2 = new THREE.Mesh(wingGeo, wMat);
+      const wingWire2 = new THREE.LineSegments(new THREE.EdgesGeometry(wingGeo), eMat);
 
-      const tEdges = new THREE.EdgesGeometry(tGeo);
-      const tWireframe = new THREE.LineSegments(tEdges, eMat);
+      // Position wings on sides
+      wingSolid1.position.set((w / 2) + (wingW / 2) - 0.1, (wingH - h) / 2, 0);
+      wingWire1.position.copy(wingSolid1.position);
 
-      tSolid.position.y = (h / 2) + (topH / 2);
-      tWireframe.position.y = (h / 2) + (topH / 2);
+      wingSolid2.position.set(-(w / 2) - (wingW / 2) + 0.1, (wingH - h) / 2, 0);
+      wingWire2.position.copy(wingSolid2.position);
 
-      buildingGroup.add(tSolid);
-      buildingGroup.add(tWireframe);
+      buildingGroup.add(wingSolid1, wingWire1, wingSolid2, wingWire2);
+    }
 
-      // Antenna
-      if (Math.random() > 0.5) {
-        const aGeo = new THREE.CylinderGeometry(0.01, 0.01, 0.5 + Math.random() * 1.5, 4);
-        const aSolid = new THREE.Mesh(aGeo, eMat); // Use edge color for antenna to make it visible
-        aSolid.position.y = tSolid.position.y + (topH / 2) + aGeo.parameters.height / 2;
-        buildingGroup.add(aSolid);
+    // Crown/tier (Stepped Architecture)
+    if (Math.random() > 0.3 && h > 2.0) {
+      const tiers = Math.floor(1 + Math.random() * 3);
+      let currentY = h / 2;
+      let currentW = w;
+      let currentD = d;
+
+      for (let t = 0; t < tiers; t++) {
+        currentW *= (0.6 + Math.random() * 0.2);
+        currentD *= (0.6 + Math.random() * 0.2);
+        const tierH = 0.4 + Math.random() * 0.8;
+
+        const tGeo = new THREE.BoxGeometry(currentW, tierH, currentD, Math.max(1, Math.floor(currentW * 3)), Math.max(1, Math.floor(tierH * 4)), Math.max(1, Math.floor(currentD * 3)));
+        const tSolid = new THREE.Mesh(tGeo, wMat);
+        const tWireframe = new THREE.LineSegments(new THREE.EdgesGeometry(tGeo), eMat);
+
+        tSolid.position.y = currentY + (tierH / 2);
+        tWireframe.position.y = currentY + (tierH / 2);
+
+        buildingGroup.add(tSolid, tWireframe);
+
+        currentY += tierH;
+
+        // Add antenna on the very top tier
+        if (t === tiers - 1 && Math.random() > 0.4) {
+          const aGeo = new THREE.CylinderGeometry(0.01, 0.03, 0.8 + Math.random() * 1.5, 4);
+          const aSolid = new THREE.Mesh(aGeo, eMat); // Use edge color for highlight
+          aSolid.position.y = tSolid.position.y + (tierH / 2) + (aGeo.parameters.height / 2);
+          buildingGroup.add(aSolid);
+        }
       }
     }
 
