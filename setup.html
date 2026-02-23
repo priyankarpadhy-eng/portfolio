@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Setup — Import from LinkedIn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/setup.css" />
+</head>
+
+<body>
+    <!-- Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Step Indicators -->
+    <div class="steps-indicator">
+        <div class="step-dot active" data-step="1"><span>1</span></div>
+        <div class="step-line"></div>
+        <div class="step-dot" data-step="2"><span>2</span></div>
+        <div class="step-line"></div>
+        <div class="step-dot" data-step="3"><span>3</span></div>
+        <div class="step-line"></div>
+        <div class="step-dot" data-step="4"><span>4</span></div>
+    </div>
+
+    <!-- ========================
+       STEP 1: LinkedIn Import
+       ======================== -->
+    <div class="step-container active" id="step-1">
+        <div class="step-inner">
+            <div class="step-icon">🔗</div>
+            <div class="step-tag">Step 01</div>
+            <h1 class="step-title">Import from <span class="gold">LinkedIn</span></h1>
+            <p class="step-desc">Paste your LinkedIn profile URL and we'll fetch your name, headline, and photo
+                automatically. You can edit everything in the next steps.</p>
+
+            <div class="li-input-wrap">
+                <div class="li-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0A66C2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                        <rect x="2" y="9" width="4" height="12" />
+                        <circle cx="4" cy="4" r="2" />
+                    </svg>
+                </div>
+                <input type="url" id="li-url" class="li-input" placeholder="https://www.linkedin.com/in/your-username"
+                    autocomplete="off" />
+                <button class="li-btn" id="li-fetch-btn" onclick="fetchLinkedIn()">
+                    <span id="li-btn-text">Import →</span>
+                </button>
+            </div>
+
+            <div id="li-status" class="li-status hidden"></div>
+
+            <div id="li-preview" class="li-preview hidden">
+                <div class="li-preview-avatar" id="li-avatar-wrap">
+                    <img id="li-avatar-img" src="" alt="Profile"
+                        onerror="this.style.display='none';document.getElementById('li-avatar-fallback').style.display='flex'" />
+                    <div id="li-avatar-fallback" class="avatar-fallback">👤</div>
+                </div>
+                <div class="li-preview-info">
+                    <div class="li-preview-name" id="li-preview-name">—</div>
+                    <div class="li-preview-headline" id="li-preview-headline">—</div>
+                    <div class="li-preview-badge">✓ Fetched from LinkedIn</div>
+                </div>
+            </div>
+
+            <div class="step-actions">
+                <button class="btn-skip" onclick="skipLinkedIn()">Skip — fill manually</button>
+                <button class="btn-next" id="step1-next" onclick="goStep(2)">Continue →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================
+       STEP 2: Personal Info
+       ======================== -->
+    <div class="step-container" id="step-2">
+        <div class="step-inner wide">
+            <div class="step-tag">Step 02</div>
+            <h1 class="step-title">Personal <span class="gold">Details</span></h1>
+            <p class="step-desc">Tell us about yourself. This populates your hero section and about page.</p>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="f-name" placeholder="e.g. Arjun Sharma" />
+                </div>
+                <div class="form-group">
+                    <label>University / College *</label>
+                    <input type="text" id="f-university" placeholder="e.g. IIT Roorkee" />
+                </div>
+                <div class="form-group">
+                    <label>Degree</label>
+                    <input type="text" id="f-degree" placeholder="e.g. B.Tech Civil Engineering" />
+                </div>
+                <div class="form-group">
+                    <label>Graduation Year</label>
+                    <input type="text" id="f-grad-year" placeholder="e.g. 2025" />
+                </div>
+                <div class="form-group full">
+                    <label>Professional Headline</label>
+                    <input type="text" id="f-headline"
+                        placeholder="e.g. Civil Engineering Undergraduate | Structural Design Enthusiast" />
+                </div>
+                <div class="form-group full">
+                    <label>Short Bio (About section)</label>
+                    <textarea id="f-bio" rows="4"
+                        placeholder="Write a 2–3 sentence intro about yourself, your interests, and what drives you as an engineer..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" id="f-location" placeholder="e.g. Roorkee, Uttarakhand, India" />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="f-email" placeholder="you@university.edu" />
+                </div>
+                <div class="form-group">
+                    <label>Phone (optional)</label>
+                    <input type="text" id="f-phone" placeholder="+91 98765 43210" />
+                </div>
+                <div class="form-group">
+                    <label>LinkedIn URL</label>
+                    <input type="url" id="f-linkedin" placeholder="https://linkedin.com/in/..." />
+                </div>
+                <div class="form-group">
+                    <label>GitHub URL (optional)</label>
+                    <input type="url" id="f-github" placeholder="https://github.com/..." />
+                </div>
+                <div class="form-group">
+                    <label>"Available for" badge text</label>
+                    <input type="text" id="f-badge" placeholder="Available for Internships & Collaboration" />
+                </div>
+                <div class="form-group">
+                    <label>Projects completed</label>
+                    <input type="number" id="f-stat-projects" placeholder="12" min="0" max="999" />
+                </div>
+                <div class="form-group">
+                    <label>Years studied</label>
+                    <input type="number" id="f-stat-years" placeholder="3" min="0" max="10" />
+                </div>
+                <div class="form-group">
+                    <label>Internships</label>
+                    <input type="number" id="f-stat-internships" placeholder="4" min="0" max="99" />
+                </div>
+            </div>
+
+            <div class="step-actions">
+                <button class="btn-back" onclick="goStep(1)">← Back</button>
+                <button class="btn-next" onclick="saveStep2(); goStep(3)">Continue →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================
+       STEP 3: Skills & Projects
+       ======================== -->
+    <div class="step-container" id="step-3">
+        <div class="step-inner wide">
+            <div class="step-tag">Step 03</div>
+            <h1 class="step-title">Skills & <span class="gold">Projects</span></h1>
+            <p class="step-desc">Add your top skills (up to 8) and your 4 best projects.</p>
+
+            <!-- Skills -->
+            <h3 class="subsection-title">⚙️ Core Skills</h3>
+            <div id="skills-list" class="skills-edit-list">
+                <!-- Dynamically populated -->
+            </div>
+            <button class="btn-add" onclick="addSkill()">+ Add Skill</button>
+
+            <!-- Tags -->
+            <h3 class="subsection-title" style="margin-top:2.5rem;">🏷️ About Tags <small>(e.g. AutoCAD, Python,
+                    BIM)</small></h3>
+            <input type="text" id="f-tags" class="full-input"
+                placeholder="Separate tags with commas: AutoCAD, STAAD.Pro, Python, BIM, Revit" />
+
+            <!-- Tool icons -->
+            <h3 class="subsection-title" style="margin-top:2.5rem;">🔧 Tools Grid <small>(emoji + label, up to
+                    8)</small></h3>
+            <div id="tools-list" class="tools-edit-list">
+                <!-- Dynamically populated -->
+            </div>
+            <button class="btn-add" onclick="addTool()">+ Add Tool</button>
+
+            <div class="step-actions" style="margin-top:3rem">
+                <button class="btn-back" onclick="goStep(2)">← Back</button>
+                <button class="btn-next" onclick="saveStep3(); goStep(4)">Continue →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================
+       STEP 4: Projects & Generate
+       ======================== -->
+    <div class="step-container" id="step-4">
+        <div class="step-inner wide">
+            <div class="step-tag">Step 04</div>
+            <h1 class="step-title">Projects & <span class="gold">Generate</span></h1>
+            <p class="step-desc">Add up to 4 projects, then generate your portfolio!</p>
+
+            <div id="projects-list">
+                <!-- Dynamically populated -->
+            </div>
+            <button class="btn-add" onclick="addProject()" id="add-proj-btn">+ Add Project</button>
+
+            <div class="generate-box">
+                <div class="generate-icon">🚀</div>
+                <h2>Ready to Launch?</h2>
+                <p>Your portfolio will be generated instantly from all the information you've provided. You can always
+                    come back and update it.</p>
+                <button class="btn-generate" onclick="generatePortfolio()">✨ Generate My Portfolio</button>
+            </div>
+
+            <div class="step-actions">
+                <button class="btn-back" onclick="goStep(3)">← Back</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="js/setup.js"></script>
+</body>
+
+</html>

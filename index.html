@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arjun Sharma — Civil Engineering Portfolio</title>
+  <meta name="description"
+    content="Civil Engineering undergraduate portfolio showcasing structural design, sustainability, and innovative infrastructure solutions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Custom Cursor -->
+  <div id="cursor" class="cursor"></div>
+  <div id="cursor-follower" class="cursor-follower"></div>
+
+  <!-- Loader -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-bar"></div>
+      <span class="loader-text">LOADING</span>
+      <div class="loader-counter"><span id="loader-num">0</span>%</div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-logo">
+      <span class="logo-bracket">[</span>AS<span class="logo-bracket">]</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#timeline" class="nav-link">Journey</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <a href="setup.html" class="nav-cta magnetic">✦ Customize</a>
+    <a href="setup.html" class="nav-setup-hint" title="Import from LinkedIn">🔗 Import LinkedIn</a>
+    <div class="nav-hamburger" id="nav-hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="#about" class="mobile-link">About</a></li>
+      <li><a href="#skills" class="mobile-link">Skills</a></li>
+      <li><a href="#projects" class="mobile-link">Projects</a></li>
+      <li><a href="#timeline" class="mobile-link">Journey</a></li>
+      <li><a href="#contact" class="mobile-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Available for Internships & Collaboration
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-line" data-text="ARJUN">ARJUN</span>
+        <span class="hero-line accent" data-text="SHARMA">SHARMA</span>
+      </h1>
+      <p class="hero-subtitle">Civil Engineering Undergraduate</p>
+      <p class="hero-tagline">
+        Designing infrastructure that connects people,<br />
+        sustains communities, and stands the test of time.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary magnetic">View Projects</a>
+        <a href="#about" class="btn-ghost">About Me →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" data-target="12">0</span><span class="stat-label">Projects</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="3">0</span><span class="stat-label">Years Studied</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="4">0</span><span class="stat-label">Internships</span>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="about-bg-text">ENGINEER</div>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">01 / About</span>
+        <h2 class="section-title">Building Tomorrow,<br /><em>Today</em></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-visual reveal">
+          <div class="about-img-wrap">
+            <div class="about-img-placeholder">
+              <div class="avatar-icon">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="100" cy="70" r="45" fill="#D4A853" opacity="0.9" />
+                  <ellipse cx="100" cy="160" rx="70" ry="50" fill="#D4A853" opacity="0.7" />
+                  <rect x="60" y="180" width="80" height="8" rx="4" fill="#1a1a1a" />
+                </svg>
+              </div>
+            </div>
+            <div class="about-img-accent"></div>
+          </div>
+          <div class="about-card glass">
+            <div class="about-card-icon">🏗️</div>
+            <div><strong>IIT Roorkee</strong><br /><small>B.Tech Civil Engineering</small></div>
+          </div>
+        </div>
+        <div class="about-text reveal">
+          <p class="about-intro">
+            I'm a passionate <strong>civil engineering undergraduate</strong> with a deep curiosity for how structures
+            interact with the environment, society, and the future.
+          </p>
+          <p class="about-body">
+            My work spans structural analysis, sustainable design, and smart infrastructure. I believe the buildings and
+            bridges we design today will shape the lives of millions tomorrow — and that's a responsibility I take
+            seriously.
+          </p>
+          <p class="about-body">
+            When I'm not running simulations or drafting blueprints, I explore computational design tools and advocate
+            for resilient, climate-aware engineering.
+          </p>
+          <div class="about-tags">
+            <span class="tag">Structural Analysis</span>
+            <span class="tag">AutoCAD</span>
+            <span class="tag">STAAD.Pro</span>
+            <span class="tag">Sustainable Design</span>
+            <span class="tag">BIM</span>
+            <span class="tag">Python</span>
+          </div>
+          <a href="#" class="btn-primary magnetic" style="display:inline-block;margin-top:2rem;">Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">02 / Skills</span>
+        <h2 class="section-title">Technical<br /><em>Arsenal</em></h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skills-bars reveal">
+          <h3 class="skills-cat">Core Engineering</h3>
+          <div class="skill-item">
+            <div class="skill-meta"><span>Structural Analysis</span><span>92%</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="92"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-meta"><span>AutoCAD / Civil 3D</span><span>88%</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="88"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-meta"><span>STAAD.Pro / SAP2000</span><span>80%</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="80"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-meta"><span>Material Science</span><span>85%</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="85"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-meta"><span>Geotechnical Engineering</span><span>75%</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="75"></div>
+            </div>
+          </div>
+        </div>
+        <div class="skills-icons reveal">
+          <h3 class="skills-cat">Tools & Tech</h3>
+          <div class="icon-grid">
+            <div class="icon-card glass"><span class="icon-emoji">📐</span><span>AutoCAD</span></div>
+            <div class="icon-card glass"><span class="icon-emoji">🏗️</span><span>STAAD.Pro</span></div>
+            <div class="icon-card glass"><span class="icon-emoji">🧱</span><span>Revit BIM</span></div>
+            <div class="icon-card glass"><span class="icon-emoji">🗺️</span><span>ArcGIS</span></div>
+            <div class="icon-card glass"><span class="icon-emoji">🐍</span><span>Python</span></div>
+            <div class="icon-card glass"><span class="icon-emoji">📊</span><span>MATLAB</span></div>
+            <div class="icon-card glass"><span class="icon-emoji">☁️</span><span>MS Project</span></div>
+            <div class="icon-card glass"><span class="icon-emoji">🌿</span><span>LEED / Green</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">03 / Projects</span>
+        <h2 class="section-title">Selected<br /><em>Works</em></h2>
+      </div>
+      <div class="projects-grid">
+        <!-- Card 1 -->
+        <div class="project-card reveal" id="proj-1">
+          <div class="project-card-inner">
+            <div class="project-front">
+              <div class="project-img"
+                style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+                <div class="project-img-overlay">
+                  <span class="project-cat">Structural Design</span>
+                </div>
+                <div class="bridge-svg">
+                  <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="150" x2="400" y2="150" stroke="#D4A853" stroke-width="3" />
+                    <line x1="200" y1="20" x2="50" y2="150" stroke="#D4A853" stroke-width="2" stroke-dasharray="4" />
+                    <line x1="200" y1="20" x2="150" y2="150" stroke="#D4A853" stroke-width="2" stroke-dasharray="4" />
+                    <line x1="200" y1="20" x2="250" y2="150" stroke="#D4A853" stroke-width="2" stroke-dasharray="4" />
+                    <line x1="200" y1="20" x2="350" y2="150" stroke="#D4A853" stroke-width="2" stroke-dasharray="4" />
+                    <rect x="190" y="10" width="20" height="140" fill="#D4A853" opacity="0.8" />
+                    <rect x="0" y="150" width="400" height="20" fill="#4a90a4" opacity="0.6" />
+                  </svg>
+                </div>
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Cable-Stayed Bridge Design</h3>
+                <p class="project-brief">200m span bridge with composite deck and twin pylons</p>
+                <div class="project-hover-hint">Hover to flip →</div>
+              </div>
+            </div>
+            <div class="project-back glass">
+              <span class="project-cat-back">Structural Design</span>
+              <h3>Cable-Stayed Bridge Design</h3>
+              <p>Designed a 200m cable-stayed bridge for a semi-urban crossing, performing load analysis, pylon design,
+                and cable optimization using STAAD.Pro and SAP2000.</p>
+              <div class="project-tech">
+                <span>SAP2000</span><span>AutoCAD</span><span>STAAD.Pro</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="btn-sm">View Report</a>
+                <a href="#" class="btn-sm-ghost">Gallery</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="project-card reveal" id="proj-2">
+          <div class="project-card-inner">
+            <div class="project-front">
+              <div class="project-img"
+                style="background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0d2137 100%);">
+                <div class="project-img-overlay">
+                  <span class="project-cat">BIM & Planning</span>
+                </div>
+                <div class="blueprint-svg">
+                  <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="20" y="20" width="360" height="160" fill="none" stroke="#4a90a4" stroke-width="1.5"
+                      opacity="0.4" />
+                    <rect x="40" y="40" width="140" height="100" fill="none" stroke="#4a90a4" stroke-width="1"
+                      opacity="0.6" />
+                    <rect x="220" y="40" width="140" height="100" fill="none" stroke="#4a90a4" stroke-width="1"
+                      opacity="0.6" />
+                    <rect x="60" y="60" width="40" height="50" fill="#4a90a4" opacity="0.2" />
+                    <rect x="120" y="60" width="40" height="50" fill="#4a90a4" opacity="0.2" />
+                    <rect x="240" y="60" width="40" height="50" fill="#D4A853" opacity="0.3" />
+                    <rect x="300" y="60" width="40" height="50" fill="#D4A853" opacity="0.3" />
+                    <line x1="20" y1="10" x2="380" y2="10" stroke="#D4A853" stroke-width="0.5" opacity="0.5" />
+                    <line x1="10" y1="20" x2="10" y2="180" stroke="#D4A853" stroke-width="0.5" opacity="0.5" />
+                  </svg>
+                </div>
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Smart Campus BIM Model</h3>
+                <p class="project-brief">Full BIM model for a sustainable university campus</p>
+                <div class="project-hover-hint">Hover to flip →</div>
+              </div>
+            </div>
+            <div class="project-back glass">
+              <span class="project-cat-back">BIM & Planning</span>
+              <h3>Smart Campus BIM Model</h3>
+              <p>Developed a comprehensive BIM model for a 50-acre smart campus, including structural, MEP, and
+                landscape layers. Integrated energy simulation for LEED certification pathway.</p>
+              <div class="project-tech">
+                <span>Revit</span><span>Navisworks</span><span>AutoCAD</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="btn-sm">View Report</a>
+                <a href="#" class="btn-sm-ghost">Gallery</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="project-card reveal" id="proj-3">
+          <div class="project-card-inner">
+            <div class="project-front">
+              <div class="project-img"
+                style="background: linear-gradient(135deg, #0a1a0a 0%, #0d2b14 50%, #123d1a 100%);">
+                <div class="project-img-overlay">
+                  <span class="project-cat">Sustainable Design</span>
+                </div>
+                <div class="green-svg">
+                  <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="140" y="60" width="120" height="120" fill="#1a3d1a" stroke="#4CAF50" stroke-width="1.5"
+                      opacity="0.8" />
+                    <rect x="160" y="40" width="80" height="120" fill="#1a3d1a" stroke="#4CAF50" stroke-width="1.5"
+                      opacity="0.8" />
+                    <rect x="180" y="20" width="40" height="120" fill="#1a3d1a" stroke="#4CAF50" stroke-width="1.5"
+                      opacity="0.8" />
+                    <ellipse cx="160" cy="80" rx="25" ry="30" fill="#4CAF50" opacity="0.6" />
+                    <ellipse cx="240" cy="100" rx="30" ry="25" fill="#4CAF50" opacity="0.5" />
+                    <ellipse cx="200" cy="60" rx="20" ry="22" fill="#4CAF50" opacity="0.7" />
+                    <circle cx="320" cy="40" r="30" fill="#FFD700" opacity="0.3" />
+                    <line x1="320" y1="80" x2="320" y2="100" stroke="#FFD700" stroke-width="2" />
+                    <line x1="300" y1="60" x2="290" y2="50" stroke="#FFD700" stroke-width="2" />
+                    <line x1="340" y1="60" x2="350" y2="50" stroke="#FFD700" stroke-width="2" />
+                  </svg>
+                </div>
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Green Housing Complex</h3>
+                <p class="project-brief">Net-zero energy affordable housing concept design</p>
+                <div class="project-hover-hint">Hover to flip →</div>
+              </div>
+            </div>
+            <div class="project-back glass">
+              <span class="project-cat-back">Sustainable Design</span>
+              <h3>Green Housing Complex</h3>
+              <p>Conceptual design of a 200-unit net-zero affordable housing complex with passive ventilation, rainwater
+                harvesting, solar integration, and green roofs targeting LEED Platinum.</p>
+              <div class="project-tech">
+                <span>Revit</span><span>EnergyPlus</span><span>LEED</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="btn-sm">View Report</a>
+                <a href="#" class="btn-sm-ghost">Gallery</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="project-card reveal" id="proj-4">
+          <div class="project-card-inner">
+            <div class="project-front">
+              <div class="project-img"
+                style="background: linear-gradient(135deg, #1a0a0a 0%, #3d1a0d 50%, #5c2d10 100%);">
+                <div class="project-img-overlay">
+                  <span class="project-cat">Geotechnical</span>
+                </div>
+                <div class="soil-svg">
+                  <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="100" width="400" height="100" fill="#3d2b1a" opacity="0.6" />
+                    <rect x="0" y="130" width="400" height="70" fill="#5c3d25" opacity="0.5" />
+                    <rect x="0" y="155" width="400" height="45" fill="#7a5432" opacity="0.4" />
+                    <line x1="0" y1="100" x2="400" y2="100" stroke="#D4A853" stroke-width="1.5" stroke-dasharray="5" />
+                    <line x1="0" y1="130" x2="400" y2="130" stroke="#a07840" stroke-width="1" stroke-dasharray="5" />
+                    <rect x="180" y="40" width="8" height="120" fill="#888" opacity="0.8" />
+                    <rect x="170" y="35" width="28" height="10" fill="#666" opacity="0.9" />
+                    <circle cx="184" cy="100" r="6" fill="#D4A853" opacity="0.9" />
+                    <circle cx="184" cy="130" r="5" fill="#a07840" opacity="0.9" />
+                    <circle cx="184" cy="155" r="4" fill="#7a5432" opacity="0.9" />
+                  </svg>
+                </div>
+              </div>
+              <div class="project-info">
+                <h3 class="project-title">Soil Liquefaction Study</h3>
+                <p class="project-brief">Seismic soil liquefaction risk assessment for urban area</p>
+                <div class="project-hover-hint">Hover to flip →</div>
+              </div>
+            </div>
+            <div class="project-back glass">
+              <span class="project-cat-back">Geotechnical</span>
+              <h3>Soil Liquefaction Study</h3>
+              <p>Seismic soil liquefaction risk assessment for a 5 km² urban area using SPT data and GIS mapping.
+                Identified high-risk zones and recommended mitigation measures.</p>
+              <div class="project-tech">
+                <span>ArcGIS</span><span>MATLAB</span><span>Python</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="btn-sm">View Report</a>
+                <a href="#" class="btn-sm-ghost">Gallery</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section id="timeline" class="timeline">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">04 / Journey</span>
+        <h2 class="section-title">Academic<br /><em>Milestones</em></h2>
+      </div>
+      <div class="timeline-wrap">
+        <div class="timeline-line" id="timeline-line"></div>
+        <div class="timeline-items">
+          <div class="timeline-item left reveal-left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass">
+              <span class="timeline-year">2021</span>
+              <h4>Enrolled — IIT Roorkee</h4>
+              <p>Began B.Tech in Civil Engineering, one of India's oldest and most prestigious engineering institutions.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item right reveal-right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass">
+              <span class="timeline-year">2022</span>
+              <h4>First Internship — AECOM</h4>
+              <p>Structural design internship. Worked on highway interchange design and drainage planning for a major
+                national highway project.</p>
+            </div>
+          </div>
+          <div class="timeline-item left reveal-left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass">
+              <span class="timeline-year">2023</span>
+              <h4>Research — BIM & Smart Cities</h4>
+              <p>Joined Prof. Verma's Smart Infrastructure Lab. Published a conference paper on BIM adoption challenges
+                in developing economies.</p>
+            </div>
+          </div>
+          <div class="timeline-item right reveal-right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass">
+              <span class="timeline-year">2023</span>
+              <h4>National Design Competition — Runner-up</h4>
+              <p>Secured runner-up at ASCE India Student Design Competition with the Green Housing Complex conceptual
+                design.</p>
+            </div>
+          </div>
+          <div class="timeline-item left reveal-left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass">
+              <span class="timeline-year">2024</span>
+              <h4>Internship — L&T Construction</h4>
+              <p>Site engineering internship on a metro rail viaduct project. Managed quality control, concrete mix
+                design, and substructure monitoring.</p>
+            </div>
+          </div>
+          <div class="timeline-item right reveal-right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass">
+              <span class="timeline-year">2025</span>
+              <h4>Final Year — Thesis</h4>
+              <p>Thesis on seismic retrofitting of heritage masonry structures using CFRP composites. Expected
+                graduation: May 2025.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <canvas id="contact-canvas"></canvas>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">05 / Contact</span>
+        <h2 class="section-title">Let's Build<br /><em>Together</em></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p class="contact-intro">Whether you have a project in mind, an internship opportunity, or just want to talk
+            engineering — I'd love to connect.</p>
+          <div class="contact-items">
+            <div class="contact-item"><span class="contact-icon">📍</span><span>Roorkee, Uttarakhand, India</span></div>
+            <div class="contact-item"><span class="contact-icon">📧</span><span>arjun.sharma@iitr.ac.in</span></div>
+            <div class="contact-item"><span class="contact-icon">📞</span><span>+91 98765 43210</span></div>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-link magnetic" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="#" class="social-link magnetic" aria-label="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              GitHub
+            </a>
+            <a href="#" class="social-link magnetic" aria-label="ResearchGate">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z" />
+                <path fill="none" stroke="white" stroke-width="1.5" d="M7 8h10M7 12h5M7 16h3" />
+              </svg>
+              Research
+            </a>
+          </div>
+        </div>
+        <form class="contact-form glass reveal" id="contact-form" onsubmit="return false">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your Name" autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="Project, Internship, Collaboration..." />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="4" placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary magnetic" style="width:100%;justify-content:center;">Send Message
+            →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo"><span class="logo-bracket">[</span>AS<span class="logo-bracket">]</span></div>
+        <p class="footer-text">© 2025 Arjun Sharma. Designed with ♥ and a lot of concrete.</p>
+        <p class="footer-tag">Civil Engineer · Innovator · Builder</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Data hydration: must run BEFORE hero.js and main.js -->
+  <script src="js/portfolio-data.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
