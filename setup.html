@@ -59,6 +59,28 @@
                 </button>
             </div>
 
+            <!-- RapidAPI key panel -->
+            <div class="rapidapi-panel">
+                <button class="rapidapi-toggle" onclick="toggleRapidAPI()" id="rapidapi-toggle">
+                    ⚡ Use RapidAPI for full profile data (name, bio, skills, experience)
+                    <span class="toggle-arrow">▼</span>
+                </button>
+                <div class="rapidapi-body hidden" id="rapidapi-body">
+                    <p class="rapidapi-desc">
+                        Get a <strong>free API key</strong> from RapidAPI to fetch your full LinkedIn profile — bio,
+                        experience, education, skills and more auto-filled.
+                        <a href="https://rapidapi.com/freshdata-freshdata-default/api/fresh-linkedin-profile-data"
+                            target="_blank" class="rapidapi-link">Get free key →</a>
+                    </p>
+                    <div class="rapidapi-input-row">
+                        <input type="text" id="rapidapi-key" class="rapidapi-key-input"
+                            placeholder="Paste your RapidAPI key here…" autocomplete="off" spellcheck="false" />
+                        <span class="key-status" id="key-status"></span>
+                    </div>
+                    <p class="rapidapi-hint">Free tier: 100 requests/month • Key is stored locally only</p>
+                </div>
+            </div>
+
             <div id="li-status" class="li-status hidden"></div>
 
             <div id="li-preview" class="li-preview hidden">

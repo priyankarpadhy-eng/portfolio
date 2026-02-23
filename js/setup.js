@@ -106,6 +106,76 @@ function updateProgress() {
     });
 }
 
+/* ─── RapidAPI panel toggle ─────────────────────── */
+function toggleRapidAPI() {
+    const body = document.getElementById('rapidapi-body');
+    const toggle = document.getElementById('rapidapi-toggle');
+    const isOpen = !body.classList.contains('hidden');
+    body.classList.toggle('hidden', isOpen);
+    toggle.classList.toggle('open', !isOpen);
+    // Persist key from localStorage
+    const savedKey = localStorage.getItem('rapidapi_key');
+    if (savedKey && !document.getElementById('rapidapi-key').value) {
+        document.getElementById('rapidapi-key').value = savedKey;
+        document.getElementById('key-status').textContent = '🔑';
+    }
+}
+
+/* ─── RapidAPI: Full LinkedIn profile fetch ─────── */
+async function fetchFromRapidAPI(profileUrl, apiKey) {
+    // Fresh LinkedIn Profile Data API on RapidAPI
+    const endpoint = `https://fresh-linkedin-profile-data.p.rapidapi.com/get-linkedin-profile?linkedin_url=${encodeURIComponent(profileUrl)}&include_skills=true`;
+    const res = await fetch(endpoint, {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-host': 'fresh-linkedin-profile-data.p.rapidapi.com',
+            'x-rapidapi-key': apiKey
+        },
+        signal: AbortSignal.timeout(10000)
+    });
+    if (!res.ok) throw new Error(`RapidAPI returned ${res.status}`);
+    const json = await res.json();
+    // API wraps response in `data`
+    return json.data || json;
+}
+
+function applyRapidAPIData(profile) {
+    // Map RapidAPI fields → our data object
+    if (profile.full_name) data.name = profile.full_name;
+    if (profile.headline) data.headline = profile.headline;
+    if (profile.about) data.bio = profile.about;
+    if (profile.location?.short) data.location = profile.location.short;
+    else if (profile.city) data.location = [profile.city, profile.country].filter(Boolean).join(', ');
+    if (profile.profile_image_url) data.avatar_url = profile.profile_image_url;
+
+    // Skills → tags + skill bars
+    if (profile.skills && profile.skills.length) {
+        data.tags = profile.skills.slice(0, 8).map(s => typeof s === 'string' ? s : s.name);
+        data.skills = profile.skills.slice(0, 8).map((s, i) => ({
+            name: typeof s === 'string' ? s : s.name,
+            pct: Math.max(70, 95 - i * 3) // descending confidence: 95, 92, 89…
+        }));
+    }
+
+    // Education → university/degree from most recent entry
+    if (profile.educations && profile.educations.length) {
+        const ed = profile.educations[0];
+        if (ed.school && !data.university) data.university = ed.school;
+        if (ed.degree && !data.degree) data.degree = ed.degree + (ed.field_of_study ? ` in ${ed.field_of_study}` : '');
+        if (ed.date_range) data.grad_year = (ed.date_range.end || '').slice(-4) || data.grad_year;
+    }
+
+    // Experience → timeline entries (stored for future use)
+    if (profile.experiences && profile.experiences.length) {
+        data.experiences = profile.experiences.slice(0, 4).map(e => ({
+            company: e.company_name || '',
+            title: e.title || '',
+            duration: e.date_range || '',
+            location: e.location || ''
+        }));
+    }
+}
+
 /* ─── LinkedIn oEmbed fetch ─────────────────────── */
 async function fetchLinkedIn() {
     const urlInput = document.getElementById('li-url');
@@ -132,9 +202,41 @@ async function fetchLinkedIn() {
     const btnText = document.getElementById('li-btn-text');
     btn.disabled = true;
     btnText.textContent = 'Fetching…';
-    showStatus('info', '🔍 Contacting LinkedIn oEmbed API…');
     data.li_url = url;
     data.linkedin = url;
+
+    /* ── Try RapidAPI first if key is provided ── */
+    const apiKeyInput = document.getElementById('rapidapi-key');
+    const apiKey = (apiKeyInput && apiKeyInput.value.trim()) || localStorage.getItem('rapidapi_key') || '';
+    if (apiKey) {
+        localStorage.setItem('rapidapi_key', apiKey);
+        document.getElementById('key-status').textContent = '⏳';
+        showStatus('info', '⚡ Fetching full profile via RapidAPI…');
+        try {
+            const profile = await fetchFromRapidAPI(url, apiKey);
+            applyRapidAPIData(profile);
+            document.getElementById('key-status').textContent = '✅';
+            applyLinkedInPreview(data.name, data.headline, data.avatar_url);
+            showStatus('success',
+                `✅ Full profile imported! Name: <strong>${data.name}</strong>` +
+                (data.bio ? ` · Bio: ${data.bio.slice(0, 60)}…` : '') +
+                (data.skills.length ? ` · ${data.skills.length} skills auto-filled` : '')
+            );
+            document.getElementById('li-preview').classList.remove('hidden');
+            setFieldIfEmpty('f-name', data.name);
+            setFieldIfEmpty('f-headline', data.headline);
+            setFieldIfEmpty('f-linkedin', data.linkedin);
+            btn.disabled = false;
+            btnText.textContent = 'Import →';
+            return; // skip oEmbed fallback
+        } catch (err) {
+            console.warn('RapidAPI fetch failed:', err.message);
+            document.getElementById('key-status').textContent = '❌';
+            showStatus('warning', `⚠️ RapidAPI error: ${err.message}. Falling back to oEmbed…`);
+        }
+    } else {
+        showStatus('info', '🔍 Contacting LinkedIn oEmbed API…');
+    }
 
     /* ── Step 3: Build oEmbed target URL ── */
     // LinkedIn oEmbed endpoint: the `url` param must be the full https:// profile URL
