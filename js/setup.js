@@ -10,7 +10,7 @@ const data = {
     li_url: '',
     name: 'Priyankar Padhy', headline: 'Civil Engineering Undergraduate | Flutter & React Developer', bio: 'I am a second year civil undergraduate student at Indira Gandhi Institute of Technology, Sarang. I am passionate about software development (Flutter, React.js), cloud technologies (GCP, Cloudflare, Firebase, Supabase), and geopolitics.',
     university: 'Indira Gandhi Institute of Technology, Sarang', degree: 'B.Tech Civil Engineering', grad_year: '2027',
-    location: 'Odisha, India', email: '', phone: '',
+    location: 'IGIT Sarang, Odisha', email: '', phone: '',
     linkedin: '', github: '',
     badge: 'Available for Internships & Collaboration',
     avatar_url: '',
